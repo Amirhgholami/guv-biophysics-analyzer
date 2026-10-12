@@ -1,6 +1,7 @@
 
 import argparse
 from pathlib import Path
+from .reporting import save_fit_results
 
 from .fitting import fit_exponential_rise
 from .io import load_fluorescence_csv
@@ -52,6 +53,9 @@ def main():
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     save_fit_plot(data, result, output_path)
+    
+    report_path = Path("results/fit_results.csv")
+    save_fit_results(result, report_path)
 
     print("\nExponential-rise fit")
     print("--------------------")
@@ -62,6 +66,7 @@ def main():
     print(f"R-squared:     {result['r_squared']:.5f}")
     print(f"Residual RMSE: {result['residual_rmse']:.4f}")
     print(f"Plot saved to: {output_path}")
+    print(f"Results saved to: {report_path}")
 
     print(
         "\nNote: tau describes the fitted fluorescence response. "
