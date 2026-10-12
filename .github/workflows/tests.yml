@@ -21,3 +21,11 @@ jobs:
 
       - name: Run tests
         run: python -m pytest -q
+        
+      - name: Run example analysis
+        run: python -m src.guv_analyzer.cli data/example_synthetic.csv
+
+      - name: Verify output files
+        run: |
+          test -f results/fluorescence_fit.png
+          test -f results/fit_results.csv
