@@ -1,14 +1,10 @@
-```yaml
 name: Tests
 
-on:
-  push:
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -25,4 +21,3 @@ jobs:
 
       - name: Run tests
         run: python -m pytest -q
-```
