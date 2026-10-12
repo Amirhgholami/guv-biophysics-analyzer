@@ -1,13 +1,13 @@
-##GUV Biophysics Analyzer
+## GUV Biophysics Analyzer
 
 **A Python tool for quantitative analysis of fluorescence time-series data in GUV experiments**
 
-##Overview
+## Overview
 
 This project implements an analysis workflow for fluorescence time-series measurements, with an initial focus on fitting exponential-rise responses.
 The tool estimates model parameters, evaluates fit quality, and generates diagnostic plots to support quantitative analysis of biophysical experiments.
 
-##Features
+## Features
 - CSV data loading and validation
 - Exponential-rise curve fitting
 - Estimation of baseline fluorescence, amplitude, onset time, and time constant
