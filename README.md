@@ -1,4 +1,4 @@
-## GUV Biophysics Analyzer
+## GUV Fluorescence Analyzer
 
 **A Python tool for quantitative analysis of fluorescence time-series data in GUV experiments**
 
