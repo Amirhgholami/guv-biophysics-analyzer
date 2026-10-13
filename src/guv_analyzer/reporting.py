@@ -14,6 +14,10 @@ def save_fit_results(result, output_path):
         "tau_s",
         "r_squared",
         "residual_rmse",
+        "residual_std",
+        "fit_duration_s",
+        "points_used",
+        "tau_to_duration",
     ]
 
     with output_path.open("w", newline="", encoding="utf-8") as file:

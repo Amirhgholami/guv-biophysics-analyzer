@@ -42,6 +42,7 @@ def save_fit_plot(data, result, output_path):
     axes[0].plot(
         dense_time,
         dense_fit,
+        color="red",
         linewidth=2,
         label="Exponential-rise fit",
     )
@@ -76,6 +77,26 @@ def save_fit_plot(data, result, output_path):
     axes[1].set_xlabel("Time (s)")
     axes[1].set_ylabel("Residual")
     axes[1].grid(alpha=0.2)
+
+    fig.tight_layout()
+    fig.savefig(output_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+
+
+
+def save_raw_plot(data, output_path):
+    """Save raw fluorescence intensity versus time."""
+
+    time_s = data["time_s"].to_numpy(dtype=float)
+    fluorescence = data["fluorescence"].to_numpy(dtype=float)
+
+    fig, ax = plt.subplots(figsize=(9, 5))
+
+    ax.plot(time_s, fluorescence, linewidth=1)
+    ax.set_xlabel("Time (s)")
+    ax.set_ylabel("Fluorescence intensity")
+    ax.set_title("GUV Fluorescence vs Time")
+    ax.grid(alpha=0.2)
 
     fig.tight_layout()
     fig.savefig(output_path, dpi=200, bbox_inches="tight")

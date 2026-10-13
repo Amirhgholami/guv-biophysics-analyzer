@@ -10,6 +10,8 @@ def fit_exponential_rise(
     fluorescence,
     fit_start=None,
     fit_end=None,
+    min_points=30,
+    min_duration_s=10.0,
 ):
     """Fit an exponential-rise model to fluorescence data."""
 
@@ -44,13 +46,19 @@ def fit_exponential_rise(
     t = time_s[mask]
     y = fluorescence[mask]
 
-    if len(t) < 5:
-        raise ValueError("Fit interval must contain at least 5 points.")
+    if len(t) < min_points:
+        raise ValueError(
+            f"Fit interval has {len(t)} points; "
+            f"at least {min_points} are required."
+        )
 
     duration = t[-1] - t[0]
 
-    if duration <= 0:
-        raise ValueError("Fit interval must have positive duration.")
+    if duration < min_duration_s:
+        raise ValueError(
+            f"Fit duration is {duration:.2f} s; "
+            f"at least {min_duration_s:.2f} s are required."
+        )
 
     baseline_guess = float(np.median(y[:max(1, len(y) // 5)]))
     amplitude_guess = float(y[-1] - baseline_guess)
@@ -107,6 +115,10 @@ def fit_exponential_rise(
     )
 
     residual_rmse = float(np.sqrt(np.mean(residuals**2)))
+    residual_std = float(np.std(residuals, ddof=1))
+    fit_duration_s = float(t[-1] - t[0])
+    points_used = int(len(t))
+    tau_to_duration = float(tau_s / fit_duration_s)
 
     return {
         "baseline": float(baseline),
@@ -115,6 +127,10 @@ def fit_exponential_rise(
         "tau_s": float(tau_s),
         "r_squared": r_squared,
         "residual_rmse": residual_rmse,
+        "residual_std": residual_std,
+        "fit_duration_s": fit_duration_s,
+        "points_used": points_used,
+        "tau_to_duration": tau_to_duration,
         "fit_time_s": t,
         "observed": y,
         "fitted": fitted,
