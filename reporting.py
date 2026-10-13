@@ -20,6 +20,6 @@ def save_fit_results(result, output_path):
         writer = csv.DictWriter(file, fieldnames=fields)
         writer.writeheader()
         writer.writerow({
-            field: result[field]
-            for field in fields
+           field: result.get(field, "")
+           for field in fields
         })
