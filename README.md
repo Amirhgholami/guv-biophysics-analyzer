@@ -27,7 +27,7 @@ where:
 - \(F_0\): baseline fluorescence intensity
 - \(A\): amplitude of the fluorescence change
 - \(t_0\): fitted onset time of the modeled response
-- \(\tau\): time constant of the fitted fluorescence response
+- \(tau\): time constant of the fitted fluorescence response
 
 ## Input format
 
