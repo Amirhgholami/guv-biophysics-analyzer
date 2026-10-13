@@ -19,7 +19,7 @@ Mathematical model
 For times before the fitted onset, the signal is modeled as a constant baseline. After onset, the fluorescence response follows:
 
 [
-F(t)=F_0+A(1-e^{-(t-t_0)/\tau})
+F(t)=F_0+A(1-e^{-(t-t_0)/tau})
 ]
 
 
