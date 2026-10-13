@@ -2,7 +2,7 @@ from src.guv_analyzer.plotting import save_fit_plot
 from src.guv_analyzer.io import load_fluorescence_csv
 from src.guv_analyzer.auto_fit import find_best_fit
 
-data = load_fluorescence_csv("data/data1.csv")
+data = load_fluorescence_csv("data.csv")
 
 result = find_best_fit(
     data["time_s"].to_numpy(),
